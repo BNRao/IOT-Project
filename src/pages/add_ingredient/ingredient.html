@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Add Ingredient
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="masters" >
+  <form (submit)="registerIngredient()" padding class="bg-register-image masters" >
+    <ion-item class="masters">
+      <ion-label class="masters">Title</ion-label>
+      <ion-select class="masters"  [(ngModel)]="todo.id" name="title">
+        <ion-option class="masters" *ngFor="let ingredient of ingredient_list" (ionSelect)="display_detail()" value="{{ingredient.id}}">{{ingredient.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+  <ion-item class="masters">
+    <ion-label>Quantity (in Lbs)</ion-label>
+    <ion-input type="number" text-right [(ngModel)]="todo.quantity" name="quantity"></ion-input>
+  </ion-item>
+  <button ion-button type="submit" [disabled]="!(todo.id&&todo.quantity)" block>Add Ingredient</button>
+
+  <ion-item class="masters" text-center>
+  <ion-img width="100px" height="100px" style= "align-items: center;" (click)="display_detail()"  src="../assets/img/{{todo.id}}.png"></ion-img>
+  <div *ngIf="display_details" [innerHtml]="text"></div>
+  </ion-item>
+
+  </form>
+</ion-content>
